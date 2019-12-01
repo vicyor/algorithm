@@ -3,7 +3,7 @@ package com.vicyor.algorithm;
 import java.util.Stack;
 
 /*
-    如何用递归函数和栈操作来完成逆序一个栈
+     如何用递归函数和栈操作来完成逆序一个栈
  */
 public class Question_3 {
     public static void main(String[] args) {
