@@ -12,6 +12,7 @@ public class Question_3 {
 
 //我不会
 //官方解
+//将递归每一步抽象出来
 class Question_3_Slove {
     Stack<Integer> stack = new Stack();
 
