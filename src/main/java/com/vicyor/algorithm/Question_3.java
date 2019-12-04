@@ -4,6 +4,8 @@ import java.util.Stack;
 
 /*
      如何用递归函数和栈操作来完成逆序一个栈
+     每次递归操作移除栈底.
+     在回溯时候将栈底加入栈
  */
 public class Question_3 {
     public static void main(String[] args) {
