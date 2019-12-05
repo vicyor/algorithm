@@ -16,7 +16,6 @@ public class Question_7 {
 }
 
 /*
-不容易碰到个会写的
 时间复杂度 O(m*n)
  */
 class Question_7_MySlove {
