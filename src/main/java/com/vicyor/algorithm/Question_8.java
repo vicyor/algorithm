@@ -53,7 +53,7 @@ class Question_8_MySlove {
 
     void computeResult(int[] arr) {
         List<Question_8_SV> svs = new ArrayList(arr.length);
-        Arrays.stream(arr).forEach(num-> System.out.print(num+"  "));
+        Arrays.stream(arr).forEach(num -> System.out.print(num + "  "));
         System.out.println();
         //存放下标
         Stack<Integer> stack = new Stack<>();
@@ -78,4 +78,91 @@ class Question_8_MySlove {
         svs.stream().forEach(System.out::println);
     }
 
+}
+
+/*
+官方解
+在元素弹出的时候再计算位置
+更优雅
+ */
+class Question_9 {
+    void init(int[][] res) {
+        for (int i = 0; i < res.length; i++) {
+            for (int j = 0; j < res[i].length; j++) {
+                res[i][j] = -1;
+            }
+        }
+    }
+
+    public int[][] getNearLessNoRepeat(int[] arr) {
+        int[][] res = new int[arr.length][2];
+        init(res);
+        Stack<Integer> stack = new Stack<>();
+        for (int i = 0; i < arr.length; i++) {
+            while (!stack.isEmpty() && arr[stack.peek()] > arr[i]) {
+                Integer idx = stack.pop();
+                res[idx][1] = arr[i];
+                if (!stack.isEmpty()) {
+                    res[idx][0] = arr[stack.peek()];
+                }
+            }
+            stack.push(i);
+        }
+        while (!stack.isEmpty()) {
+            Integer idx = stack.pop();
+            if (!stack.isEmpty()) {
+                res[idx][0] = stack.peek();
+            }
+        }
+        return res;
+    }
+}
+
+/*
+数组有重复值的官方解
+Stack的结构是一个List
+ */
+class Question_8_Slove2 {
+    void init(int[][] res) {
+        for (int i = 0; i < res.length; i++) {
+            for (int j = 0; j < res[i].length; j++) {
+                res[i][j] = -1;
+            }
+        }
+    }
+
+    int[][] getNearLess(int[] arr) {
+        int[][] res = new int[arr.length][2];
+        Stack<List<Integer>> stack = new Stack<>();
+        for (int i = 0; i < arr.length; i++) {
+            int index = i;
+            while (!stack.isEmpty() && arr[stack.peek().get(0)] > arr[i]) {
+                //出栈
+                List<Integer> indexs = stack.pop();
+                indexs.stream().forEach(idx -> res[idx][1] = index);
+                if (!stack.isEmpty()) {
+                    indexs.stream().forEach(idx -> {
+                        List<Integer> ids = stack.peek();
+                        res[idx][0] = ids.get(ids.size() - 1);
+                    });
+                }
+            }
+            //压栈
+            if (!stack.isEmpty()) {
+                Integer top = stack.peek().get(0);
+                if (arr[top] == arr[i]) {
+                    stack.peek().add(i);
+                } else {
+                    stack.push(new ArrayList<Integer>() {{
+                        add(index);
+                    }});
+                }
+            } else {
+                stack.push(new ArrayList<Integer>() {{
+                    add(index);
+                }});
+            }
+        }
+        return res;
+    }
 }
