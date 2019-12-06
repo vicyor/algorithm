@@ -163,6 +163,12 @@ class Question_8_Slove2 {
                 }});
             }
         }
+        while (!stack.isEmpty()) {
+            List<Integer> ids = stack.pop();
+            if (!stack.isEmpty()) {
+                ids.forEach(idx -> res[idx][0] = stack.peek().get(stack.peek().size() - 1));
+            }
+        }
         return res;
     }
 }
