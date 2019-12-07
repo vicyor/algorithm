@@ -85,7 +85,7 @@ class Question_8_MySlove {
 在元素弹出的时候再计算位置
 更优雅
  */
-class Question_9 {
+class Question_8_Slove3 {
     void init(int[][] res) {
         for (int i = 0; i < res.length; i++) {
             for (int j = 0; j < res[i].length; j++) {
