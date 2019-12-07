@@ -22,8 +22,6 @@ public class Question_9 {
 
 /*
 先计算出来行,根据行去算列
-疑惑 height[j]为从底到顶1的连续数量,要是底全为0，顶全为1这种?
-解决方式 从底到顶和从顶到底算两次?
  */
 class Question_9_MySlove {
     public int getSlove(int[][] map) {
@@ -39,7 +37,7 @@ class Question_9_MySlove {
         //单调栈结构
         int[][] res = monotonicStack(height);
         int[] area = new int[height.length];
-        //计算结果
+        //计算结果 比如  leftMin-i-rightMin  --->are= (leftMin,i] U[i,rightMin) *height[i]
         for (int i = 0; i < height.length; i++) {
             int left = res[i][0];
             int right = res[i][1];
